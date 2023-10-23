@@ -1,0 +1,44 @@
+.navbar{
+    display: flex;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    background-color: #1d1c1c;
+    .navbar__left{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    .add-contact{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        background-color: rgb(38, 126, 226);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        &:hover{
+            background-color: rgb(29, 110, 202);
+            transform: scale(1.05);
+            font-weight: 600;
+        }
+    }
+    .search__bar{
+        width: 40vw;
+        height: 40px;
+        border-radius: 7px;
+        padding-left: 10px;
+        text-transform: capitalize;
+    }
+}
