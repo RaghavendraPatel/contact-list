@@ -9,7 +9,7 @@ interface reducerI {
     dispatch : React.Dispatch<any>
 }
 
-//Create default State
+//Create default State using the interface
 const defaultState : reducerI = {
     state:{
         contacts: [
@@ -48,12 +48,14 @@ const randomNumber = () =>{
 //Create Reducer 
 const reducer = (state: State, action: any) => {
     switch (action.type) {
+        // to get contacts
         case 'get-contacts':
             return {
                 ...state,
                 contacts: action.payload,
                 filteredContacts: action.payload,
             };
+        // to add contact
         case 'add-contact':
             axios.post('https://jsonplaceholder.typicode.com/users',action.payload).then(()=>{
                 toast.success('Contact added successfully');
@@ -63,10 +65,12 @@ const reducer = (state: State, action: any) => {
                 contacts: [...state.contacts, action.payload],
                 filteredContacts: [...state.contacts, action.payload],
             };
+        // to delete contact
         case 'delete-contact':
             axios.delete(`https://jsonplaceholder.typicode.com/users/${action.payload}`).then(()=>{
                 toast.success('Contact deleted successfully');
             })
+            // remove contact from contacts array using filter
             return {
                 ...state,
                 contacts: state.contacts.filter(
@@ -77,10 +81,12 @@ const reducer = (state: State, action: any) => {
                 ),
                 activeContact: null,
             };
+        // to edit contact details
         case 'edit-contact':
             axios.put(`https://jsonplaceholder.typicode.com/users/${action.payload.id}`,action.payload).then(()=>{
                 toast.success('Contact updated successfully');
             })
+            // update contact in contacts array using data from payload
             const updatedContacts = state.contacts.map((contact) => {
                 if (contact.id === action.payload.id) {
                     return action.payload;
@@ -93,11 +99,13 @@ const reducer = (state: State, action: any) => {
                 filteredContacts: updatedContacts,
                 activeContact: null,
             };
+        // to an set active contact
         case 'set-active-contact':
             return {
                 ...state,
                 activeContact: action.payload,
             };
+        // to toggle add form
         case 'toggle-add-form':
             return {
                 ...state,
@@ -106,6 +114,7 @@ const reducer = (state: State, action: any) => {
                     formtype: 'add',
                 },
             };
+        // to toggle edit form
         case 'toggle-edit-form':
             return {
                 ...state,
@@ -114,6 +123,7 @@ const reducer = (state: State, action: any) => {
                     formtype: 'edit',
                 },
             };
+        // to filter contacts based on search
         case 'filter-contacts':
             const filtered = state.contacts.filter((contact) =>
                 contact.name.includes(action.payload)||contact.email.includes(action.payload)||contact.phone.includes(action.payload)

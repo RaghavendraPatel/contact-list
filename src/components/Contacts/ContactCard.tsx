@@ -10,12 +10,15 @@ type PropsType = {
 const ContactCard = (props:PropsType)=> {
     const {contact} = props;
     const {dispatch} = useContactContext();
+    //on click of contact card dispatch action to set active contact
     const handleClick = ():void=>{
         dispatch({type:'set-active-contact',payload:contact})
     }
+    //on click of delete button dispatch action to delete contact
     const handleDelete = ():void=>{
         dispatch({type:'delete-contact',payload:contact.id});
     }
+    //on click of edit button dispatch action to toggle edit form and set active contact
     const handleEdit = ():void=>{
         dispatch({type:'toggle-edit-form'});
         dispatch({type:'set-active-contact',payload:contact});

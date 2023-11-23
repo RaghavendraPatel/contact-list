@@ -8,6 +8,10 @@ import { useContactContext } from '../../context/contactContext';
 function Navbar() {
   const {dispatch} = useContactContext();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // handle search 
+  // filter contacts based on search
+  // use reducer to update state
   const handleSearch = ()=>{
     const searchString = (inputRef.current?.value||'').toLocaleLowerCase();
     console.log(searchString)

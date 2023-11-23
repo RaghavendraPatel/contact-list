@@ -16,6 +16,7 @@ function ContactForm() {
   let uimg:any;
 
   useEffect(()=>{
+    //check if formtype is edit or add
     if(formtype === 'edit'){
       const {name,email,phone,address,id,img} = state.activeContact!;
       nameRef.current!.value = name;
@@ -29,7 +30,8 @@ function ContactForm() {
       uimg = img;
     }
   },[formtype,state.activeContact])
-
+  // handle submit
+  // use reducer to update state
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const name = nameRef.current?.value;
