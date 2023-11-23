@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef } from 'react'
 import { useContactContext } from '../../context/contactContext'
 import {useEffect} from 'react'
@@ -12,6 +13,7 @@ function ContactForm() {
   const suiteRef = useRef<HTMLInputElement>(null);
   const cityRef = useRef<HTMLInputElement>(null);
   const zipcodeRef = useRef<HTMLInputElement>(null);
+  
   let uid:any;
   let uimg:any;
 

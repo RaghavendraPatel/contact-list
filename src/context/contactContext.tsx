@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {createContext, useContext, useReducer, useEffect} from 'react';
 import {Contact, State} from '../types/Types'
 import axios from 'axios';
@@ -87,6 +88,7 @@ const reducer = (state: State, action: any) => {
                 toast.success('Contact updated successfully');
             })
             // update contact in contacts array using data from payload
+            // eslint-disable-next-line no-case-declarations
             const updatedContacts = state.contacts.map((contact) => {
                 if (contact.id === action.payload.id) {
                     return action.payload;
@@ -125,6 +127,7 @@ const reducer = (state: State, action: any) => {
             };
         // to filter contacts based on search
         case 'filter-contacts':
+            // eslint-disable-next-line no-case-declarations
             const filtered = state.contacts.filter((contact) =>
                 contact.name.includes(action.payload)||contact.email.includes(action.payload)||contact.phone.includes(action.payload)
             );
@@ -144,6 +147,7 @@ export const ContactProvider  = ({children}:ContactProviderProps)=>{
 
     const getContatcs = ():void=>{
         axios.get('https://jsonplaceholder.typicode.com/users').then((res)=>{
+            // eslint-disable-next-line prefer-const
             let data : Contact[]=[];
             res.data.forEach((contact:any) => {
                 const random = randomNumber()
